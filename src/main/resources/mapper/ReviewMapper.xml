@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingyi.kp.mapper.ReviewMapper">
+    <insert id="insert">
+        insert into review (userid,content,tieid,ctime,hid,childid) values (#{userid},#{content},#{tieid},#{ctime},#{hid},#{childid})
+    </insert>
+    <delete id="deleteByTieid">
+        delete from review where tieid = #{tieid}
+    </delete>
+    <select id="queryall" resultType="com.bingyi.kp.pojo.Review">
+        select * from review
+    </select>
+    <select id="selectByTieid" resultType="com.bingyi.kp.pojo.Review">
+        select * from review
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="userid!=null">
+                userid = #{userid}
+            </if>
+            <if test="content!=null">
+                content = #{content}
+            </if>
+            <if test="tieid!=null">
+                tieid = #{tieid}
+            </if>
+            <if test="ctime!=null">
+                ctime = #{ctime}
+            </if>
+            <if test="hid!=null">
+                hid = #{hid}
+            </if>
+            <if test="childid!=null">
+                childid =#{childid}
+            </if>
+        </where>  ORDER BY ctime asc
+    </select>
+</mapper>

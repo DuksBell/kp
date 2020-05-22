@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingyi.kp.mapper.HelpMapper">
+    <insert id="insert">
+        insert into help (title,content,username,helpdate) values (#{title},#{content},#{username},#{helpdate})
+    </insert>
+    <update id="update">
+        update help
+        <set>
+            <if test="title!=null">
+                title =#{title}
+            </if>
+            <if test="content!=null">
+                content =#{content}
+            </if>
+            <if test="username">
+                username =#{username}
+            </if>
+            <if test="helpdate!=null">
+                helpdate =#{helpdate}
+            </if>
+        </set>
+    </update>
+    <delete id="delete">
+        delete help where id = #{id}
+    </delete>
+    <select id="selectByHelp" resultType="com.bingyi.kp.pojo.Help">
+        select * from help
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+            <if test="title!=null">
+                title =#{title}
+            </if>
+            <if test="content!=null">
+                content =#{content}
+            </if>
+            <if test="username">
+                username =#{username}
+            </if>
+            <if test="helpdate!=null">
+                helpdate =#{helpdate}
+            </if>
+        </where>
+    </select>
+    <select id="selectByAll" resultType="com.bingyi.kp.pojo.Help">
+        select * from help
+    </select>
+</mapper>

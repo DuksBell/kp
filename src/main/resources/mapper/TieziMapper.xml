@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingyi.kp.mapper.TieziMapper">
+    <insert id="insert" >
+        insert into tiezi (title,content,username,tiezidate) values (#{title},#{content},#{username},#{tiezidate})
+    </insert>
+    <delete id="deleteById">
+        delete * from tiezi where id = # {id}
+    </delete>
+    <select id="queryAll" resultType="com.bingyi.kp.pojo.Tiezi">
+        select * from tiezi
+    </select>
+    <select id="selectById" resultType="com.bingyi.kp.pojo.Tiezi">
+        select * from tiezi where id = #{id}
+    </select>
+
+</mapper>

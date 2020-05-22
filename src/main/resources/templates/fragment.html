@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<link th:fragment="bs3css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<div th:fragment="head(title)">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title th:text="${title}"></title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="https://www.jq22.com/jquery/reset.css">
+    </head>
+</div>
+
+<div th:fragment="footer">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <!-- Latest compiled and minified Locales -->
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script th:src="@{/js/by-utils.js}"></script>
+</div>
+
+
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-static-top" th:fragment="nav(active)">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" ></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/index}">社会公共常识科普网</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li th:classappend="${active=='科普知识'}"><a th:href="@{/index}">科普知识</a></li>
+                <li th:classappend="${active=='最新消息'}"><a th:href="@{/tiezi/list}">最新消息</a></li>
+                <li th:classappend="${active=='求助'}"><a th:href="@{/toHelp}">求助</a></li>
+                <li th:classappend="${active=='资源'}"><a th:href="@{/file/list}">资源</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">当前用户：<span th:text="${session.loginUser}"></span></a></li>
+                <li><a href="#">个人中心</a></li>
+                <li><a th:href="@{/toLogin}">登录</a></li>
+                <li><a th:href="@{/logout}">注销</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+</html>

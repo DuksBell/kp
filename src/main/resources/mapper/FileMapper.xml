@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingyi.kp.mapper.FileMapper">
+    <insert id="insert">
+        insert into file (username,path,ctime,filename,total) values (#{username},#{path},#{ctime},#{filename},#{total})
+    </insert>
+    <update id="update">
+        update file
+        <set>
+            <if test="username!=null">
+                username = #{username}
+            </if>
+            <if test="path!=null">
+                path = #{path}
+            </if>
+            <if test="ctime!=null">
+                ctime = #{ctime}
+            </if>
+            <if test="filename!=null">
+                filename =#{filename}
+            </if>
+            <if test="total!=null">
+                total =#{total}
+            </if>
+        </set> where fid = #{fid}
+    </update>
+    <delete id="deleteById">
+        delete file where fid = #{fid}
+    </delete>
+    <select id="selectByAll" resultType="com.bingyi.kp.pojo.Fileup">
+        select * from file
+    </select>
+    <select id="selectByFile" resultType="com.bingyi.kp.pojo.Fileup">
+        select * from file
+        <where>
+            <if test="fid!=null">
+                fid = #{fid}
+            </if>
+            <if test="username!=null">
+                username = #{username}
+            </if>
+            <if test="path!=null">
+                path = #{path}
+            </if>
+            <if test="ctime!=null">
+                ctime = #{ctime}
+            </if>
+            <if test="filename!=null">
+                filename =#{filename}
+            </if>
+            <if test="total!=null">
+                total =#{total}
+            </if>
+        </where>
+    </select>
+    <select id="selectToTotal" resultType="com.bingyi.kp.pojo.Fileup">
+        select * from file order by ctime
+    </select>
+</mapper>

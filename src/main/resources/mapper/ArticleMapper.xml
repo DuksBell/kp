@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingyi.kp.mapper.ArticleMapper">
+    <insert id="saveArticle" >
+        insert into article (id, title, content) values (#{id}, #{title}, #{content})
+    </insert>
+    <select id="queryArticles" resultType="com.bingyi.kp.pojo.Article">
+        select * from article
+    </select>
+    <select id="queryPageArticles" resultType="com.bingyi.kp.pojo.Article">
+        select * from article limit #{start}, #{size}
+    </select>
+    <select id="getArticleCount" resultType="java.lang.Integer">
+        select count(*) from article
+    </select>
+    <select id="selectArticleById" resultType="com.bingyi.kp.pojo.Article">
+        select * from article where id = #{id}
+    </select>
+</mapper>

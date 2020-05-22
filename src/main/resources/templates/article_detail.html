@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragment::head('社会公共常识科普网')"></div>
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: azure;
+        text-align: center;
+    }
+
+    #qq {
+        width: 600px;
+        /*宽*/
+        height: 170px;
+        /*高*/
+        background: #fff;
+        /*背景颜色*/
+        margin: 50px auto 30px;
+        border-radius: 5px;
+        /*Html5 圆角*/
+    }
+
+    #qq p {
+        font-size: 12px;
+        color: #666;
+        font-family: "微软雅黑";
+        line-height: 45px;
+        text-indent: 20px;
+    }
+
+    #qq .message {
+        width: 560px;
+        height: 70px;
+        margin: 0 auto;
+        overflow: hidden;
+        outline: none;
+        border: 1px solid #ddd;
+        padding: 8px;
+        box-sizing: border-box;
+        font-size: 14px;
+        -webkit-background-clip: text;
+        background-image: linear-gradient(to right, #778899 0%, #333 100%);
+        /*粗细 风格 颜色*/
+    }
+
+    #qq .But {
+        width: 560px;
+        height: 35px;
+        margin: 15px auto 0px;
+        position: relative;
+        /*相对，参考对象*/
+    }
+
+    #qq .But img.bq {
+        float: left;
+        /*左浮动*/
+    }
+
+    #qq .But span.submit {
+        width: 80px;
+        height: 30px;
+        background: #ff8140;
+        display: block;
+        float: right;
+        /*右浮动*/
+        line-height: 30px;
+        border-radius: 5px;
+        cursor: pointer;
+        /*手指*/
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        font-family: "微软雅黑";
+    }
+
+    /*face begin*/
+    #qq .But .face {
+        width: 440px;
+        background: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 12px #666;
+        position: absolute;
+        /*绝对定位*/
+        top: 21px;
+        left: 15px;
+        display: none;
+        /*隐藏*/
+    }
+
+    #qq .But .face ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    #qq .But .face ul li {
+        width: 30px;
+        height: 30px;
+        list-style-type: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*msgCon begin*/
+    .msgCon {
+        width: 600px;
+        margin: 0px auto;
+        margin-bottom: 60px;
+    }
+
+    .msgCon .msgBox {
+        background: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-top: 16px;
+        border-radius: 4px;
+    }
+
+    .msgCon .msgBox .headUrl {
+        width: 100%;
+        height: 60px;
+        border-bottom: 1px dotted #ddd;
+        display: flex;
+        align-items: center;
+    }
+
+    .msgCon .msgBox .headUrl img {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%
+    }
+
+    .msgCon .msgBox .headUrl div {
+        flex: 1;
+        display: flex;
+        flex-flow: column;
+        font-size: 16px;
+        margin-left: 16px;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(to top, #b224ef 0%, #7579ff 100%);
+    }
+
+    .msgCon .msgBox .headUrl div .time {
+        font-size: 14px;
+        margin-top: 6px;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+    }
+
+    .msgCon .msgBox .headUrl a {
+        font-size: 14px;
+        padding: 10px;
+        color: salmon;
+        cursor: pointer;
+    }
+
+    .msgCon .msgBox .msgTxt {
+        font-size: 14px;
+        color: #666;
+        min-height: 40px;
+        line-height: 24px;
+        padding: 10px;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(to right, #778899 0%, #333 100%);
+    }
+
+    .pinlun_container {
+        display: inline-block;
+        width: 60vw;
+    }
+
+
+
+    ul>li.pinlun-item {
+        text-align: left;
+        height: 120px;
+        margin-top: 12px;
+        position: relative;
+        border-bottom: 1px solid #CCC;
+    }
+
+    .pinlun-item .pinlun_time {
+        font-size: 14px;
+        color: #888;
+        position: absolute;
+        right: 10px;
+        bottom: 5px;
+        line-height: 14px;
+    }
+
+    .pinlun_time span {
+
+    }
+
+    div.message {
+        text-align: left;
+    }
+</style>
+<body>
+<div th:replace="fragment::nav('科普知识')"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1 th:text="${article.getTitle()}"></h1>
+        </div>
+    </div>
+    <div class="row">
+        <p th:utext="${article.getContent()}">
+        </p>
+    </div>
+</div>
+
+<div id="qq">
+    <p style="text-align: left">评论</p>
+    <div class="message" contentEditable='true'></div>
+    <div class="But">
+        <span class='submit'>发表</span>
+        <!--face begin-->
+
+        <!--face end-->
+    </div>
+</div>
+
+<div  class="pinlun_container">
+    <ul id="pinglun">
+        <li th:each="comment : ${comments}" class="pinlun-item" >
+            <div  class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="${comment.username}"></h3>
+                </div>
+                <div class="panel-body" >
+                    <div th:text="${comment.content}"></div>
+
+                    <div class="pinlun_time">
+                        <i class="glyphicon glyphicon-heart-empty" style="color: red;font-size: 16px;"></i>
+                        <span>点赞</span>
+                        <span th:text="${#dates.format(comment.ctime)}" style="margin-left: 50px;"></span>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--qq end-->
+<!--msgCon begin-->
+<div class="msgCon"></div>
+
+
+<div th:replace="fragment::footer"></div>
+<script src="/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+    //点击发表按扭，发表内容
+    $("span.submit").click(function () {
+        let txt = $(".message").html(); //获取输入框内容
+        if (!txt) {
+            $('.message').focus(); //自动获取焦点
+            return;
+        }
+        $.ajax({
+            url: 'http://localhost:8080/comment/add',
+            type: 'POST',
+            dataType: 'json',
+            timeout: 2000,
+            data: {
+                username:'[[${session.loginUser}]]',
+                articleid:[[${article.getId()}]],
+                content: txt,
+            },
+            success: function (response) {
+                // $('#title').val("")
+                // $('#text').val("")
+                //alert(JSON.stringify(data));
+
+                let pinglun = response.data[0];
+                let date = pinglun.ctime;
+                pinglun.formatDate = formatDate(new Date(date), "yyyy-MM-dd");
+
+
+                $('#pinglun').prepend(`
+                <li class="pinlun-item" style="display:none; text-align: left;height: 120px;margin-top: 12px;position: relative;border-bottom: 1px solid #CCC;" >
+                    <div  class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">` + pinglun.username + `</h3>
+                        </div>
+                        <div class="panel-body" >
+                            <div>` + pinglun.content + `</div>
+                            <div class="pinlun_time">
+                                <i class="glyphicon glyphicon-heart-empty" style="color: red;font-size: 16px;"></i>
+                                <span>点赞</span>
+                                <span style="margin-left: 50px;" style="font-size: 14px;color: #888;position: absolute;right: 10px;bottom: 5px;line-height: 14px;">` + pinglun.formatDate + `</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+                `);
+                $('.pinlun-item').first().show("slow");
+                $('div.message').html("");
+
+
+            },
+        })
+    })
+    //
+    //     msgBoxList.unshift(obj) //添加到数组里
+    //     window.localStorage.setItem('msgBoxList', JSON.stringify(msgBoxList)) //将数据保存到缓存
+    //     innerHTMl([obj]) //渲染当前输入框内容
+    //     $('.message').html('') // 清空输入框
+    //
+    // });
+    //
+    // //删除当前数据
+    // $("body").on('click', '.del', function () {
+    //     let index = $(this).parent().parent().index();
+    //     msgBoxList.splice(index, 1)
+    //     window.localStorage.setItem('msgBoxList', JSON.stringify(msgBoxList)) //将数据保存到缓存
+    //     $(this).parent().parent().remove()
+    // })
+
+    //渲染html
+    function innerHTMl(List) {
+
+        List = List || []
+        List.forEach(item => {
+            let str =
+                `<div class='msgBox'>
+						<div class="headUrl">
+							<img src='images/tx.jpg' width='50' height='50'/>
+							<div>
+								<span class="title" >[[${session.loginUser}]]</span>
+								<span class="time">2018-01-01</span>
+							</div>
+							<a class="del">删除</a>
+						</div>
+						<div class='msgTxt'>
+							${item.msg}
+						</div>
+					</div>`
+            $(".msgCon").prepend(str);
+    })
+    }
+
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1,
+                    (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        return fmt;
+    };
+
+    function formatDate(d, fmt) {
+        return d.format(fmt);
+    }
+</script>
+
+</body>
+</html>

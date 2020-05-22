@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragment::head('最新消息')"></div>
+<body>
+<div th:replace="fragment::nav('科普知识')"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 th:text="${file.getFilename()}"></h1>
+            上传者：<p th:text="${file.getUsername()}"></p>
+            上传时间：<p th:text="${file.getCtime()}"></p>
+            下载次数：<p th:text="${file.getTotal()}"></p>
+
+
+            <a th:href="@{/download/{fid}(fid=${file.getFid()})}">下载地址</a>
+        </div>
+
+    </div>
+</div>
+<div th:replace="fragment::footer"></div>
+<script >
+
+</script>
+
+</body>
+</html>
