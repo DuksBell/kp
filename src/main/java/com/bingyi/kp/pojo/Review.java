@@ -17,6 +17,7 @@ public class Review {
     private Date ctime;
     private Long hid;
     private Long childid;
+    private String username;
 
     @Override
     public String toString() {

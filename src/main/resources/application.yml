@@ -4,9 +4,9 @@ spring:
     cache: false # 禁用 thymeleaf 模板缓存
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/kp?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8 #&useSSL=true
+    url: jdbc:mysql://49.234.19.84:3306/kp?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8 #&useSSL=true
     username: root
-    password: 1234
+    password: root
   jpa:
     properties:
       hibernate:

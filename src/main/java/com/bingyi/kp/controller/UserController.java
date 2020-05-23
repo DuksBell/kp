@@ -9,6 +9,7 @@ import com.bingyi.kp.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,14 +26,17 @@ public class UserController extends BaseController{
     private UserService userService;
 
     @RequestMapping(value = "/user/all",method = RequestMethod.POST)
-    @ResponseBody
-    public String getAll(HttpSession session){
+    public String getAll(HttpSession session, Model model){
         User loginUser = userService.SelectByName(session.getAttribute("loginUser").toString());
         if(loginUser.getStatus()==1){
             List<User> all = userService.getAll();
-            return resultOk("请求成功",all);
+            model.addAttribute("all",all);
+            return "/manager/index.html";
         }else{
-            return resultError(404,"请求失败");
+            List<User> users = userService.selectByUser(loginUser);
+            User user = users.get(0);
+            model.addAttribute("user",user);
+            return "/user/index.html";
         }
     }
 }

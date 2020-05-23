@@ -105,6 +105,11 @@ public class PageController {
         return "registered";
     }
 
+    @RequestMapping("/toManager")
+    public String toManage(){
+        return "/manager/index";
+    }
+
     @RequestMapping("/toArticleDetail/{articleID}")
     public String toArticleDetail(@PathVariable String articleID, Model model, HttpSession session, HttpServletResponse response) {
 //        System.out.println(session.getAttribute("loginUser"));
